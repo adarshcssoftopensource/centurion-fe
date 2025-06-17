@@ -1,9 +1,9 @@
-import { Outlet } from "react-router";
-import RoleGuardLayout from "../role-guard-layout";
+import { Outlet } from 'react-router';
+import RoleGuardLayout from '../role-guard-layout';
 
 export default function LicensingLayout() {
   return (
-    <RoleGuardLayout allowedRoles={["licensing"]}>
+    <RoleGuardLayout allowedRoles={['licensing']}>
       <Outlet />
     </RoleGuardLayout>
   );

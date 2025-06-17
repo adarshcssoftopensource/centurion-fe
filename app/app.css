@@ -1,16 +1,14 @@
-@import "./styles/font.css";
-@import "tailwindcss";
-@import "tw-animate-css";
+@import './styles/font.css';
+@import 'tailwindcss';
+@import 'tw-animate-css';
 @custom-variant dark (&: is(.dark *));
 
 @theme {
-  --font-sans: "satoshi";
+  --font-sans: 'satoshi';
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
-
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
@@ -54,7 +52,7 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
   --color-gray: var(--gray);
   --color-red: var(--red);
-  
+
   --text-med: 16px;
   --color-black-200: var(--black-200);
   --color-orange-4: var(--orange-4);
@@ -64,7 +62,7 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.9761 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -91,8 +89,8 @@ body {
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-accent: oklch(1 0 0);
+  --sidebar-accent-foreground: oklch(0.2097 0.008 274.53);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --gray: oklch(0.4955 0.0255 265.57);

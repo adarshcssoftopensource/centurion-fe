@@ -1,67 +1,49 @@
-import { flexRender, type Table } from "@tanstack/react-table";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-import { TableHead, TableHeader, TableRow } from "../ui/table";
-import { cn } from "~/lib/utils";
+import { flexRender, type Table } from '@tanstack/react-table';
+import { TableHead, TableHeader, TableRow } from '../ui/table';
+import { cn } from '~/lib/utils';
+import { ChevronsUpDown } from 'lucide-react';
 interface CustomTableHeaderProps<T> {
   table: Table<T>;
 }
 function CustomTableHeader<T = any>({ table }: CustomTableHeaderProps<T>) {
   return (
-    <TableHeader>
+    <TableHeader className="[&_tr]:border-b-0">
       {table.getHeaderGroups().map((headerGroup) => (
-        <TableRow key={headerGroup.id} className="hover:bg-transparent">
+        <TableRow key={headerGroup.id} className="hover:bg-transparent border-b-0">
           {headerGroup.headers.map((header) => {
             return (
               <TableHead
                 key={header.id}
                 style={{ width: `${header.getSize()}px` }}
-                className="h-11"
+                className="h-9 px-3"
               >
                 {header.isPlaceholder ? null : header.column.getCanSort() ? (
                   <div
                     className={cn(
                       header.column.getCanSort() &&
-                        "flex h-full cursor-pointer items-center justify-between gap-2 select-none"
+                        'flex h-full cursor-pointer items-center gap-2 select-none',
                     )}
-                    onClick={header.column.getToggleSortingHandler()}
+                    onClick={
+                      header.column.columnDef.enableSorting
+                        ? header.column.getToggleSortingHandler()
+                        : undefined
+                    }
                     onKeyDown={(e) => {
                       // Enhanced keyboard handling for sorting
-                      if (
-                        header.column.getCanSort() &&
-                        (e.key === "Enter" || e.key === " ")
-                      ) {
+                      if (header.column.getCanSort() && (e.key === 'Enter' || e.key === ' ')) {
                         e.preventDefault();
                         header.column.getToggleSortingHandler()?.(e);
                       }
                     }}
                     tabIndex={header.column.getCanSort() ? 0 : undefined}
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
+                    {flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.column.columnDef.enableSorting && (
+                      <ChevronsUpDown className={cn('ml-2 h-4 w-4')} />
                     )}
-                    {{
-                      asc: (
-                        <ChevronUpIcon
-                          className="shrink-0 opacity-60"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      ),
-                      desc: (
-                        <ChevronDownIcon
-                          className="shrink-0 opacity-60"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      ),
-                    }[header.column.getIsSorted() as string] ?? null}
                   </div>
                 ) : (
-                  flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )
+                  flexRender(header.column.columnDef.header, header.getContext())
                 )}
               </TableHead>
             );

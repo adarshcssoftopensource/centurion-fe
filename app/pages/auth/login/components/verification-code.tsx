@@ -1,22 +1,15 @@
-import React, { useState } from "react";
-import { VerificationIcon } from "~/assets/icons"; // Replace with correct icon
-import Heading from "~/components/typography/heading";
-import { Button } from "~/components/ui/button";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "~/components/ui/input-otp";
+import React, { useState } from 'react';
+import { VerificationIcon } from '~/assets/icons'; // Replace with correct icon
+import Heading from '~/components/typography/heading';
+import { Button } from '~/components/ui/button';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '~/components/ui/input-otp';
 
 const VerificationCode = () => {
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState('');
 
   const handleComplete = (value: string) => {
     // console.log("OTP Entered:", value);
-    localStorage.setItem(
-      "token",
-      JSON.stringify({ name: "test", role: "admin" })
-    );
+    localStorage.setItem('token', JSON.stringify({ name: 'test', role: 'admin' }));
     // Trigger verification logic here
   };
 
@@ -34,12 +27,7 @@ const VerificationCode = () => {
       </div>
       {/* Input fields */}
       <div className="my-6 flex justify-start ">
-        <InputOTP
-          maxLength={4}
-          value={otp}
-          onChange={setOtp}
-          onComplete={handleComplete}
-        >
+        <InputOTP maxLength={4} value={otp} onChange={setOtp} onComplete={handleComplete}>
           <InputOTPGroup className="gap-2.5">
             {[0, 1, 2, 3].map((i) => (
               <InputOTPSlot

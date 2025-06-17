@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   AdminDashboardIcon,
   LogManagementIcon,
@@ -6,8 +6,8 @@ import {
   NotificationsIcon,
   SecuritySettingsIcon,
   UserManagementIcon,
-} from "~/assets/icons";
-import Logo from "~/assets/logo.png";
+} from '~/assets/icons';
+import Logo from '~/assets/logo.png';
 
 import {
   Sidebar,
@@ -19,28 +19,28 @@ import {
   SidebarMenuItem,
   SidebarRail,
   SidebarTrigger,
-} from "~/components/ui/sidebar";
+} from '~/components/ui/sidebar';
 
 const data = [
   {
-    title: "Admin Dashboard",
+    title: 'Admin Dashboard',
     icon: <AdminDashboardIcon />,
-    url: "/admin/user-management",
+    url: '/admin/user-management',
   },
   {
-    title: "User Management",
+    title: 'User Management',
     icon: <UserManagementIcon />,
-    url: "/admin/user-management",
+    url: '/admin/user-management',
   },
   {
-    title: "Security Settings",
+    title: 'Security Settings',
     icon: <SecuritySettingsIcon />,
-    url: "/admin/user-management",
+    url: '/admin/user-management',
   },
   {
-    title: "Log Management",
+    title: 'Log Management',
     icon: <LogManagementIcon />,
-    url: "/admin/user-management",
+    url: '/admin/user-management',
   },
 ];
 
@@ -54,17 +54,14 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className="mb-8">
         <SidebarMenu className="flex flex-row justify-between items-center">
           <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              className="gap-4 px-0 hover:bg-transparent"
-            >
+            <SidebarMenuButton size="lg" className="gap-3 px-0 hover:bg-transparent">
               <img src={Logo} alt="Logo" className="size-10" />
               <div className="leading-tight text-[20px] font-medium">
                 Centurion <br /> Licensing
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
-          <SidebarTrigger />
+          <SidebarTrigger className="size-6" />
         </SidebarMenu>
       </SidebarHeader>
 
@@ -72,12 +69,8 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="flex flex-col gap-1">
         <SidebarMenu>
           {data.map((item, index) => (
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                isActive={index === 0}
-                tooltip={item.title}
-                className="py-7 px-3"
-              >
+            <SidebarMenuItem key={index}>
+              <SidebarMenuButton isActive={index === 0} tooltip={item.title} className="py-7 px-3">
                 <span className="size-5">{item.icon}</span>
                 <span>{item.title}</span>
               </SidebarMenuButton>

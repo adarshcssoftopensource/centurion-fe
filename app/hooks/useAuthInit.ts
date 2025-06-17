@@ -1,10 +1,10 @@
-import { useState } from "react";
-import type { AuthUser } from "~/types/Auth";
+import { useState } from 'react';
+import type { AuthUser } from '~/types/Auth';
 
 export function useAuthInit() {
   const [user, setUser] = useState<AuthUser | null>({
-    name: "test",
-    role: "admin",
+    name: 'test',
+    role: 'admin',
   });
 
   // useEffect(() => {
