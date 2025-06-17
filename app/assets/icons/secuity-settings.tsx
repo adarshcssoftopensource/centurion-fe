@@ -1,4 +1,4 @@
-import type { SVG } from ".";
+import type { SVG } from '.';
 
 const SecuritySettings = (props: SVG) => {
   return (

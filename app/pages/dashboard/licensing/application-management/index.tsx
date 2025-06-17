@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function ApplicationMangement() {
   return <div>Application Mangement</div>;

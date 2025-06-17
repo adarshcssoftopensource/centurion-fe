@@ -1,4 +1,4 @@
-import type { SVG } from ".";
+import type { SVG } from '.';
 
 const UserManagementDashboards = (props: SVG) => {
   return (

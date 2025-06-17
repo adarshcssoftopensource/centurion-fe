@@ -1,14 +1,13 @@
-import { Button } from "~/components/ui/button";
-import Logo from "~/assets/logo.png";
-import LoginBg from "~/assets/images/login-bg.png";
-import { useState } from "react";
-import { LoginForm, MultiFactor, VerificationCode } from "./components";
+import { Button } from '~/components/ui/button';
+import Logo from '~/assets/logo.png';
+import LoginBg from '~/assets/images/login-bg.png';
+import { useState } from 'react';
+import { LoginForm, MultiFactor, VerificationCode } from './components';
 
 const Login = () => {
   const [step, setStep] = useState(1);
 
-  const goToNextStep = () =>
-    setStep((prev) => (prev < 3 ? ((prev + 1) as typeof step) : prev));
+  const goToNextStep = () => setStep((prev) => (prev < 3 ? ((prev + 1) as typeof step) : prev));
 
   // const goToPreviousStep = () =>
   //   setStep((prev) => (prev > 1 ? ((prev - 1) as typeof step) : prev));
@@ -47,9 +46,7 @@ const Login = () => {
 
           <div className="absolute bottom-4 right-4 text-sm">
             <p className="inline-block mr-2 text-[20px]">Having problems?</p>
-            <Button className="w-46 rounded-[14px] text-[18px] cursor-pointer">
-              Contact us
-            </Button>
+            <Button className="w-46 rounded-[14px] text-[18px] cursor-pointer">Contact us</Button>
           </div>
         </div>
       </div>

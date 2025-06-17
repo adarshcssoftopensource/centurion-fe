@@ -1,4 +1,4 @@
-import type { SVG } from ".";
+import type { SVG } from '.';
 
 const Collapse = (props: SVG) => {
   return (
@@ -25,11 +25,7 @@ const Collapse = (props: SVG) => {
         stroke-linejoin="round"
       />
       <path d="M15 2.76074V21.7607" stroke="#2D3139" strokeWidth="1.5" />
-      <path
-        d="M21.5 8.76074H15M21.5 15.7607H15"
-        stroke="#2D3139"
-        strokeWidth="1.5"
-      />
+      <path d="M21.5 8.76074H15M21.5 15.7607H15" stroke="#2D3139" strokeWidth="1.5" />
     </svg>
   );
 };

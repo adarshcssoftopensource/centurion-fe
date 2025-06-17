@@ -1,7 +1,7 @@
 // app/routes/PrivateLayout.tsx
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router";
-import { useAuth } from "~/providers/AuthProvider";
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
+import { useAuth } from '~/providers/AuthProvider';
 
 export default function PrivateLayout() {
   const { user } = useAuth();
@@ -9,13 +9,12 @@ export default function PrivateLayout() {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate('/login');
     } else {
-      if (location.pathname === "/") {
-        if (user.role === "admin") navigate("/admin/user-management");
-        else if (user.role === "licensing")
-          navigate("/licensing/application-management");
-        else navigate("/login");
+      if (location.pathname === '/') {
+        if (user.role === 'admin') navigate('/admin/user-management');
+        else if (user.role === 'licensing') navigate('/licensing/application-management');
+        else navigate('/login');
       }
     }
   }, [user, navigate]);

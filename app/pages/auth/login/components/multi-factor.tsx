@@ -37,7 +37,7 @@ const MultiFactor = ({ onNext }: { onNext: () => void }) => {
   return (
     <div>
       <div className="mb-8">
-        <div className="flex items-center justify-center w-16 h-16 rounded-full border border-gray-300 shadow-[0_0_0_14px_#F7F7F7] mb-5 ml-4">
+        <div className="flex items-center justify-center w-16 h-16 rounded-full border border-gray-300 shadow-[0_0_0_14px_#efefef] mb-5 ml-4">
           <MultiFactorIcon />
         </div>
 
@@ -46,15 +46,11 @@ const MultiFactor = ({ onNext }: { onNext: () => void }) => {
           Please select your preferred Multi-Factor Authentication.
         </p>
       </div>
-      <RadioGroup
-        value={value}
-        onValueChange={(val) => setValue(val as "email" | "sms")}
-        className="grid grid-cols-2 mb-6"
-      >
+      <RadioGroup value={value}  onValueChange={(val) => setValue(val as "email" | "sms")} className="grid grid-cols-2 mb-6">
         <label
           htmlFor="email"
           className={`rounded-xl border p-3 cursor-pointer transition-all duration-200 flex flex-col gap-2
-          ${value === "email" ? "border-yellow-600" : "border-gray-200"}`}
+          ${value === 'email' ? 'border-yellow-600' : 'border-gray-200'}`}
         >
           <div className="flex items-center gap-3">
             <div className="bg-gray-50 p-3 rounded-[12px]">
@@ -64,8 +60,8 @@ const MultiFactor = ({ onNext }: { onNext: () => void }) => {
               value="email"
               id="email"
               className={cn(
-                "ml-auto multi-radio h-5 w-5 [&_svg]:fill-white [&_svg]:stroke-0 [&_svg]:size-3 border-gray-200",
-                value === "email" && "bg-orange-4  border-none"
+                'ml-auto multi-radio h-5 w-5 [&_svg]:fill-white [&_svg]:stroke-0 [&_svg]:size-3 border-gray-200',
+                value === 'email' && 'bg-orange-4  border-none',
               )}
             />
           </div>
@@ -78,7 +74,7 @@ const MultiFactor = ({ onNext }: { onNext: () => void }) => {
         <label
           htmlFor="sms"
           className={`rounded-xl border p-3 cursor-pointer transition-all duration-200 flex flex-col gap-2
-          ${value === "sms" ? "border-yellow-600" : "border-gray-200"}`}
+          ${value === 'sms' ? 'border-yellow-600' : 'border-gray-200'}`}
         >
           <div className="flex items-center gap-3">
             <div className="bg-gray-50 p-3 rounded-[12px]">
@@ -88,8 +84,8 @@ const MultiFactor = ({ onNext }: { onNext: () => void }) => {
               value="sms"
               id="sms"
               className={cn(
-                "ml-auto multi-radio h-5 w-5 [&_svg]:fill-white [&_svg]:stroke-0 [&_svg]:size-3 border-gray-200",
-                value === "sms" && "bg-orange-4  border-none"
+                'ml-auto multi-radio h-5 w-5 [&_svg]:fill-white [&_svg]:stroke-0 [&_svg]:size-3 border-gray-200',
+                value === 'sms' && 'bg-orange-4  border-none',
               )}
             />
           </div>

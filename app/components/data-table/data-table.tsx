@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   getCoreRowModel,
@@ -9,21 +9,21 @@ import {
   type ColumnDef,
   type SortingState,
   type TableOptions,
-} from "@tanstack/react-table";
-import { Table } from "../ui/table";
-import CustomTableHeader from "./custom-table-header";
-import TablePagination from "./custom-table-pagination";
-import CustomTableBody from "./custom-table-body";
-import TableFilter from "./table-filter";
-import { useState } from "react";
-import Heading from "../typography/heading";
+} from '@tanstack/react-table';
+import { Table } from '../ui/table';
+import CustomTableHeader from './custom-table-header';
+import TablePagination from './custom-table-pagination';
+import CustomTableBody from './custom-table-body';
+import TableFilter from './table-filter';
+import { useState } from 'react';
+import Heading from '../typography/heading';
 
 interface DataTableProps<T> {
   filterKey?: string;
   tableTitle: string;
   data: T[];
   columns: ColumnDef<T, any>[];
-  options?: Omit<TableOptions<T>, "data" | "columns" | "getCoreRowModel">;
+  options?: Omit<TableOptions<T>, 'data' | 'columns' | 'getCoreRowModel'>;
   isPagination?: boolean;
   isFilter?: boolean;
   actions?: React.ReactNode;
@@ -37,7 +37,7 @@ function DataTable<T>({
   isFilter = true,
   actions,
 }: DataTableProps<T>) {
-  const [globalFilter, setGlobalFilter] = useState("");
+  const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -64,18 +64,18 @@ function DataTable<T>({
   });
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {/* Filters */}
-      <div className="flex py-4 flex-row justify-between items-center">
-        <Heading>{tableTitle}</Heading>
-        <div className="flex flex-row gap-2 items-center">
+      <div className="flex  md:flex-row md:justify-between md:items-center flex-col gap-2 md:gap-0 justify-start items-start">
+        <Heading className="font-medium">{tableTitle}</Heading>
+        <div className="flex flex-row gap-2 items-center w-full md:max-w-[calc(100%-200px)] md:justify-end max-w-[100%] justify-start ">
           {isFilter && <TableFilter table={table} />}
           {actions}
         </div>
       </div>
       {/* Table */}
-      <div className="bg-background overflow-hidden rounded-md border">
-        <Table className="table-fixed">
+      <div className="bg-background overflow-hidden">
+        <Table className="table-fixed text-[#444955]">
           {/* table header */}
           <CustomTableHeader table={table} />
           {/* table body */}

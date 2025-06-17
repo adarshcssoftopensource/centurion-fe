@@ -1,8 +1,8 @@
-import { SearchIcon, CircleXIcon } from "lucide-react";
-import { useId, useRef } from "react";
-import { Input } from "../ui/input";
-import { cn } from "~/lib/utils";
-import type { Table } from "@tanstack/react-table";
+import { SearchIcon, CircleXIcon } from 'lucide-react';
+import { useId, useRef } from 'react';
+import { Input } from '../ui/input';
+import { cn } from '~/lib/utils';
+import type { Table } from '@tanstack/react-table';
 
 interface TableFilterProps<T> {
   table: Table<T>;
@@ -14,9 +14,9 @@ function TableFilter<T>({ table }: TableFilterProps<T>) {
   const globalFilter = table.getState().globalFilter as string;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3">
-      <div className="flex items-center gap-3">
-        <div className="relative">
+    <div className="flex flex-wrap items-center justify-between gap-3 max-w-[calc(var(--spacing)*75)] w-full">
+      <div className="flex items-center gap-3 w-full">
+        <div className="relative w-full">
           <Input
             id={`${id}-input`}
             ref={inputRef}
@@ -34,7 +34,7 @@ function TableFilter<T>({ table }: TableFilterProps<T>) {
             <button
               type="button"
               onClick={() => {
-                table.setGlobalFilter("");
+                table.setGlobalFilter('');
                 inputRef.current?.focus();
               }}
               className="text-muted-foreground/80 hover:text-foreground absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition outline-none focus-visible:ring-2 focus-visible:ring-ring"

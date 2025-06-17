@@ -1,5 +1,5 @@
-import React from "react";
-import type { SVG } from ".";
+import React from 'react';
+import type { SVG } from '.';
 
 const Logout = (props: SVG) => {
   return (

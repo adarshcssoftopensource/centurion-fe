@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { type LucideIcon } from "lucide-react";
+import { type LucideIcon } from 'lucide-react';
 
-import { Collapsible } from "~/components/ui/collapsible";
+import { Collapsible } from '~/components/ui/collapsible';
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "~/components/ui/sidebar";
+} from '~/components/ui/sidebar';
 
 export function NavMain({
   items,

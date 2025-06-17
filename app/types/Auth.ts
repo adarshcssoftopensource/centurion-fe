@@ -1,4 +1,4 @@
 export interface AuthUser {
   name: string;
-  role: "admin" | "licensing";
+  role: 'admin' | 'licensing';
 }

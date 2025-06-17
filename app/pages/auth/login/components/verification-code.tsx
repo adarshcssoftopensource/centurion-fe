@@ -63,12 +63,7 @@ const VerificationCode = () => {
       </div>
       {/* Input fields */}
       <div className="my-6 flex justify-start ">
-        <InputOTP
-          maxLength={4}
-          value={otp}
-          onChange={setOtp}
-          onComplete={handleComplete}
-        >
+        <InputOTP maxLength={4} value={otp} onChange={setOtp} onComplete={handleComplete}>
           <InputOTPGroup className="gap-2.5">
             {[0, 1, 2, 3].map((i) => (
               <InputOTPSlot

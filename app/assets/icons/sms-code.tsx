@@ -1,4 +1,4 @@
-import type { SVG } from ".";
+import type { SVG } from '.';
 
 const MultiFactor = (props: SVG) => {
   return (
