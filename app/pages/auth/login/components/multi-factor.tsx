@@ -4,13 +4,36 @@ import Heading from "~/components/typography/heading";
 import { Button } from "~/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
 import { cn } from "~/lib/utils";
+import { useSendOtp } from "../hooks/use-send-otp";
+import Cookies from "js-cookie";
+
+import { toast } from "react-toastify";
 
 const MultiFactor = ({ onNext }: { onNext: () => void }) => {
-  const [value, setValue] = React.useState("email");
-  const handleSubmit = () => {
-    // Do login logic here
-    onNext(); // Move to next step
+  const sendOtp = useSendOtp()
+  const [value, setValue] = React.useState<"email" | "sms">("email");
+
+  const handleSubmit = async () => {
+    try {
+      const token = Cookies.get("mfa_token");
+      if (!token) {
+        toast.error("MFA token not found. Please login again.");
+        return;
+      }
+
+      await sendOtp.mutateAsync({
+        method: value,
+
+      });
+
+      toast.success("OTP sent successfully");
+      onNext(); // Go to OTP input step
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Failed to send OTP");
+    }
   };
+
+
   return (
     <div>
       <div className="mb-8">
@@ -25,7 +48,7 @@ const MultiFactor = ({ onNext }: { onNext: () => void }) => {
       </div>
       <RadioGroup
         value={value}
-        onValueChange={setValue}
+        onValueChange={(val) => setValue(val as "email" | "sms")}
         className="grid grid-cols-2 mb-6"
       >
         <label

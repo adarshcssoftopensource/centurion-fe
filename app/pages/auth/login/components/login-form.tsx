@@ -10,21 +10,19 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import Heading from "~/components/typography/heading";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { UsersIconRound } from "~/assets/icons";
+import { useSignIn } from "../hooks/use-login";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import { formSchema } from "~/schema/schema";
+import type z from "zod";
 
-const formSchema = z.object({
-  email: z.string().email({
-    message: "Invalid email address.",
-  }),
-  password: z.string().min(3, {
-    message: "Password must be at least 6 characters.",
-  }),
-});
+
 const LoginForm = ({ onNext }: { onNext: () => void }) => {
+  const signin = useSignIn();
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,9 +32,19 @@ const LoginForm = ({ onNext }: { onNext: () => void }) => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    onNext();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await signin.mutateAsync({ email: values.email, password: values.password });
+      if (res.mfa) {
+        Cookies.set("mfa_token", res.jwt ?? "");
+      }
+      onNext();
+      // router.push(DASHBOARD_ROUTES.DASHBOARD);
+    } catch (error: any) {
+      console.log({ error });
+
+      toast.error("Failed to Login.");
+    }
   }
 
   return (
@@ -72,6 +80,7 @@ const LoginForm = ({ onNext }: { onNext: () => void }) => {
                 </FormControl>
                 <FormMessage />
               </FormItem>
+
             )}
           />
 

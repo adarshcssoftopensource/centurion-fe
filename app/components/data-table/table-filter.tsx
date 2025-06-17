@@ -22,7 +22,7 @@ function TableFilter<T>({ table }: TableFilterProps<T>) {
             ref={inputRef}
             className={cn("peer min-w-60 ps-9", globalFilter && "pe-9")}
             value={globalFilter ?? ""}
-            onChange={(e) => table.setGlobalFilter(e.target.value)} // 🚀 updates as you type
+            onChange={(e) => table.setGlobalFilter(e.target.value)}
             placeholder="Search..."
             type="text"
             aria-label="Global search"

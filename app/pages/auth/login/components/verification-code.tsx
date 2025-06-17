@@ -7,17 +7,46 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "~/components/ui/input-otp";
+import { useVerifyOtp } from "../hooks/use-verify-otp";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
 
 const VerificationCode = () => {
+  const verifyOtp = useVerifyOtp()
   const [otp, setOtp] = useState("");
+  const navigate = useNavigate()
 
-  const handleComplete = (value: string) => {
-    // console.log("OTP Entered:", value);
-    localStorage.setItem(
-      "token",
-      JSON.stringify({ name: "test", role: "admin" })
-    );
-    // Trigger verification logic here
+  const handleComplete = async (value: string) => {
+    try {
+      const token = Cookies.get("mfa_token");
+      if (!token) {
+        toast.error("MFA token not found. Please login again.");
+        return;
+      }
+      interface MFATokenPayload {
+        email: string;
+      }
+    
+      const decoded = jwtDecode<MFATokenPayload>(token);
+
+      const res = await verifyOtp.mutateAsync({
+        email: decoded?.email,
+        otp: value
+      });
+
+      if (res.jwt) {  
+        Cookies.set("auth_token", res.jwt ?? "");
+        Cookies.remove('mfa_token')
+      }
+
+      toast.success("Login Successfully");
+      navigate('/admin/user-management')
+
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || "Failed to send OTP");
+    }
   };
 
   return (
